@@ -1,0 +1,21 @@
+/* Footer */
+footer {
+  width: 100%;
+  padding: 3rem 0 3rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: #26183b;
+  margin: 2rem 0 0 0;
+}
+
+footer .content {
+  justify-content: center;
+}
+
+footer .paragraph {
+  margin: auto;
+  font-size: 1rem;
+  text-align: center;
+  color: #FFFFFF;
+}

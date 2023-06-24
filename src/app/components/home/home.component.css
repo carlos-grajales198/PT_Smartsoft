@@ -1,0 +1,51 @@
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0 0 0;
+}
+
+.container {
+  width: 85%;
+  max-width: 1250px;
+}
+
+h1 {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  color: #686868;
+  text-align: center;
+  line-height: 1.6rem;
+}
+
+#file {
+  display: none;
+}
+
+#drop-zone {
+  width: 70%;
+  height: 5rem;
+  border: 1px solid #A1A1A1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto 1.5rem auto;
+  border-radius: 15px;
+  color: #686868;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.container-canvas {
+  width: 85%;
+  margin: auto;
+}
+
+#chart {
+  width: 400px;
+  height: 400px;
+}
+
+

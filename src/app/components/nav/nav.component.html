@@ -1,0 +1,30 @@
+<nav class="navbar bg-body-tertiary">
+  <!-- <button class="btnMenu" (click)="show()">☰</button> -->
+
+  <div class="logo">
+    <h1>Smartsoft</h1>
+  </div>
+
+  <ul>
+    <li><a [routerLink]="['/users']">Home</a></li>
+    <li><a>Developers</a></li>
+    <li><a>About us</a></li>
+    <li><a [routerLink]="['/contact']">Contact</a></li>
+  </ul>
+
+  <div class="nav-logout-btn">
+    <!-- <button (click)="logout()">Log out</button> -->
+    <button>Log out</button>
+  </div>
+</nav>
+
+<!-- <section class="menu" id="menu" (click)="hide()">
+  <div class="close-menu" (click)="hide()">
+      <p>X</p>
+  </div>
+  <a [routerLink]="['/users']">Home</a>
+  <a >Developers</a>
+  <a >About us</a>
+  <a [routerLink]="['/contact']">Contact</a>
+</section>
+ -->

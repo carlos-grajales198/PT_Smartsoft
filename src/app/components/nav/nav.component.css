@@ -1,0 +1,164 @@
+/* Navegación */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem 0 3rem;
+  font-weight: 600;
+  position: relative;
+  top: 0;
+  z-index: 2;
+  background: #f7f8fb;
+}
+
+.btnMenu {
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: #42446E;
+  cursor: pointer;
+  display: none;
+  background: none;
+  border: none;
+}
+
+.menu {
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  background-color: #26183b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: all 0.3s ease-in;
+  z-index: 3;
+}
+
+.menu a {
+  font-size: 1.3rem;
+  margin: 2rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.close-menu {
+  width: 90%;
+  max-width: 450px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+}
+
+.close-menu p {
+  font-size: 25px;
+  color: #ffffff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo h1 {
+  font-size: 1.1rem;
+  color: #42446E;
+  letter-spacing: -0.04rem;
+  margin: auto;
+  line-height: 0;
+}
+
+nav ul {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
+
+nav ul li a {
+  font-size: 0.75rem;
+  color: #42446E;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+}
+
+nav ul li a:hover {
+  color: #ffffff;
+  background: #6358DC;
+  border-radius: 10px;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.nav-logout-btn {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.nav-logout-btn button {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #181818;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  gap: 0.3rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0.2rem 1.5rem 0.2rem 1.5rem;
+  border-radius: 10px;
+}
+
+.nav-logout-btn button:hover {
+  color: #ffffff;
+  background: #6358DC;
+}
+
+@media(max-width:600px) {
+
+  .btnMenu {
+    display: inline;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  nav {
+    height: 60px;
+    justify-content: space-between;
+    padding: 0 1rem 0 1rem;
+    background: #EDEDED;
+    position: sticky;
+    z-index: 3;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  .nav-logout-btn {
+    gap: 1rem;
+  }
+}
+
+
