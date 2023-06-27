@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import * as Papa from 'papaparse';
 
@@ -7,55 +7,119 @@ import * as Papa from 'papaparse';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
 
   @ViewChild('chartCanvas') chartCanvasRef!: ElementRef<HTMLCanvasElement>;
 
   fileContent: string | undefined;
   chart: Chart<'pie'> | undefined;
+  isLoggedIn: boolean = false;
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    const reader = new FileReader();
+  file: File | undefined;
+  hovered: boolean = false;
+  fileSelected: boolean = false;
 
-    reader.onload = () => {
-      this.fileContent = reader.result as string;
-      this.processFileContent();
-    };
 
-    reader.readAsText(file);
-  }
 
-  onFileDrop(event: any) {
-    event.preventDefault();
-    const file: File = event.dataTransfer.files[0];
-    const reader = new FileReader();
+  ngAfterViewInit() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    this.isLoggedIn = isLoggedIn === 'true';
 
-    reader.onload = () => {
-      this.fileContent = reader.result as string;
-      this.processFileContent();
-    };
-
-    reader.readAsText(file);
-  }
-
-  onDragOver(event: any) {
-    event.preventDefault();
-  }
-
-  processFileContent() {
-    if (this.fileContent) {
-      const parsedData = Papa.parse(this.fileContent, { header: false });
-      const data = parsedData.data as string[][];
-
-      // Realizar los cálculos necesarios
-      const dataGraph = this.calculateDataGraph(data);
+    const storedChartData = localStorage.getItem('chartData');
+    if (storedChartData) {
+      const dataGraph = JSON.parse(storedChartData);
       this.renderChart(dataGraph);
+    }
+
+    // Recuperar el nombre del archivo del almacenamiento local
+    const storedFile = localStorage.getItem('file');
+    if (storedFile) {
+      this.file = JSON.parse(storedFile);
+      this.processFileContent();
     }
   }
 
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.file = file;
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.fileContent = reader.result as string;
+      this.processFileContent();
+    };
+
+    reader.readAsText(file);
+    // Al finalizar el procesamiento, guardar los datos del gráfico en el localStorage
+    if (this.chart) {
+      const chartData = this.chart.data;
+      localStorage.setItem('chartData', JSON.stringify(chartData));
+    }
+  }
+
+
+  onFileDrop(event: any) {
+    event.preventDefault();
+    this.hovered = false;
+    this.fileSelected = true;
+    const file: File = event.dataTransfer.files[0];
+    this.file = file;
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.fileContent = reader.result as string;
+      this.processFileContent();
+    };
+
+    reader.readAsText(file);
+    event.target.classList.remove('hover');
+
+    // Guardar el archivo en localStorage
+    localStorage.setItem('file', JSON.stringify(file));
+  }
+
+
+  onDragOver(event: any) {
+    event.preventDefault();
+    this.hovered = true;
+    event.target.classList.add('hover');
+  }
+
+
+  onDragLeave(event: any) {
+    event.preventDefault();
+    this.hovered = false;
+    event.target.classList.remove('hover');
+  }
+
+
+  processFileContent() {
+    if (this.file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileContent = reader.result as string;
+        const parsedData = Papa.parse(this.fileContent, { header: false });
+        const data = parsedData.data as string[][];
+
+        // Realizar los cálculos necesarios
+        const dataGraph = this.calculateDataGraph(data);
+        this.renderChart(dataGraph);
+
+        // Guardar los datos en localStorage
+        localStorage.setItem('chartData', JSON.stringify(dataGraph));
+
+        // Al finalizar el procesamiento, establecer el estado del archivo seleccionado
+        this.fileSelected = true;
+      };
+      reader.readAsText(this.file);
+    }
+  }
+
+
+  // Calcular el estado con el mayor acumulado
   calculateStateMax(data: string[][]) {
-    // Lógica para calcular el estado con el mayor acumulado
+
     let stateMax = '';
     let maxAcum = -1;
 
@@ -70,8 +134,10 @@ export class HomeComponent {
     return stateMax;
   }
 
+
+  // Calcular el estado con el menor acumulado
   calculateStateMin(data: string[][]) {
-    // Lógica para calcular el estado con el menor acumulado
+
     let stateMin = '';
     let minAcum = Infinity;
 
@@ -86,8 +152,10 @@ export class HomeComponent {
     return stateMin;
   }
 
+
+  // Calcular el estado más afectado
   calculateStateMostAffected(data: string[][]) {
-    // Lógica para calcular el estado más afectado
+
     let stateMostAffected = '';
     let mayorAfectacion = -1;
 
@@ -101,6 +169,7 @@ export class HomeComponent {
 
     return stateMostAffected;
   }
+
 
   renderChart(dataGraph: any) {
     const ctx = this.chartCanvasRef.nativeElement.getContext('2d');
@@ -124,8 +193,10 @@ export class HomeComponent {
     }
   }
 
+
+  // Calcular los datos de la gráfica
   calculateDataGraph(data: string[][]) {
-    // Lógica para calcular los datos de la gráfica
+
     const labels = [
       'Estado con mayor acumulado a la fecha',
       'Estado con menor acumulado a la fecha',

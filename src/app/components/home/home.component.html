@@ -2,12 +2,15 @@
 
 <main>
   <div class="container">
-    <h1>Análisis de datos muertes por covid19 en United States </h1>
+    <h1> Data analysis of deaths from covid19 in the United States </h1>
     <input id="file" type="file" (change)="onFileSelected($event)" accept=".csv">
 
-    <div id="drop-zone" (drop)="onFileDrop($event)" (dragover)="onDragOver($event)">
-      Arrastra y suelta el archivo CSV aquí
-    </div>
+ <div id="drop-zone" (drop)="onFileDrop($event)" (dragover)="onDragOver($event)">
+  <p *ngIf="!fileSelected" class="drop-text" [class.hovered]="hovered">
+    {{ hovered ? 'Drop CSV file here' : 'Drag and drop the CSV file here' }}
+  </p>
+  <p *ngIf="fileSelected" class="file-name">{{ file?.name }}</p>
+</div>
 
     <div class="container-canvas">
       <canvas #chartCanvas id="chart"></canvas>

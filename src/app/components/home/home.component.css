@@ -1,7 +1,5 @@
-
 main {
   width: 100%;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   padding: 3rem 0 0 0;
@@ -36,11 +34,26 @@ h1 {
   color: #686868;
   text-align: center;
   font-size: 0.8rem;
+  cursor: pointer;
+}
+
+#drop-zone.hover {
+  border: 1px solid #ABABAB;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 3px #C4C4C4;
+  outline: 0 none;
+  background-color: #f8f8f8;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #6358DC;
 }
 
 .container-canvas {
   width: 85%;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 #chart {
@@ -48,4 +61,18 @@ h1 {
   height: 400px;
 }
 
+@media (max-width: 550px) {
+  #drop-zone {
+    display: none;
+  }
 
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  #file {
+    display: inline;
+    margin: 2rem 0 2rem 0;
+    width: 100%;
+  }
+}

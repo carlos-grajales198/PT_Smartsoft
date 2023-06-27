@@ -57,7 +57,7 @@ form {
 .container-form input {
   height: 2.2rem;
   background-color: #ECECEC;
-  border-width: 0;
+  border: none;
   color: #2F2F2F;
   font-weight: 400;
   font-size: 0.7rem;
@@ -89,6 +89,22 @@ input:focus, input[type]:focus {
 
 .container-form button:hover {
   height: 40px;
+}
+
+.formError {
+  margin-top: 0.2rem;
+  font-size: 0.65rem;
+  color: #dc3545;
+}
+
+.border-ok {
+  border: none;
+}
+
+.border-error {
+  border: 1px solid #dc3545 !important;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 3px #ffffff;
+  outline: 0 none;
 }
 
 @media(max-width:950px) {

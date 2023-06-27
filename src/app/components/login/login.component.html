@@ -1,21 +1,32 @@
 
 <main class="container">
-  <figure class>
+  <figure>
     <img src="../../../assets/images/person-img.png">
   </figure>
 
   <section class="container-form">
     <h4>Welcome</h4>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
      <div class="item-form">
        <label>Email</label>
-       <input type="email" placeholder="name@example.com">
+       <input type="email" formControlName="email"
+       placeholder="name@example.com" [ngClass]="loginForm && email?.invalid && (email?.dirty || email?.touched)?'border-error':'border-ok'">
+       <p class="formError" *ngIf="loginForm && email?.invalid && (email?.dirty || email?.touched)">
+        {{ getError('email')}}
+      </p>
      </div>
 
      <div class="item-form">
        <label>Password</label>
-       <input type="password">
+       <input type="password" formControlName="password" [ngClass]="loginForm && password?.invalid && (password?.dirty || password?.touched)?'border-error':'border-ok'">
+       <p class="formError" *ngIf="loginForm && password?.invalid && (password?.dirty || password?.touched)">
+        {{ getError('password')}}
+      </p>
      </div>
+
+     <p class="formError" *ngIf="okLogin">
+      Incorrect credentials
+    </p>
 
      <div class="item-form">
        <button type="submit" class="btnLogin">Log in</button>
