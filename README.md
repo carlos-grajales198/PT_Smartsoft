@@ -6,17 +6,6 @@
 
 ## Instalación
 
-1. Clona el repositorio en tu máquina local.
-2. Instala las dependencias utilizando el administrador de paquetes de tu elección, por ejemplo:
-
-3. Configura el archivo de variables de entorno (.env) con las credenciales necesarias.
-4. Inicia la aplicación localmente ejecutando el siguiente comando:
-# Nombre del Proyecto
-
-PT-Smartsoft
-
-## Instalación
-
 1. Clonar el repositorio en una máquina local.
 2. Instalar las dependencias utilizando el administrador de paquetes:
 
