@@ -1,7 +1,8 @@
-# PT_Smartsoft
+
 # Nombre del Proyecto
 
-Descripción breve del proyecto y su propósito.
+- PT_Smartsoft
+
 
 ## Instalación
 
@@ -53,7 +54,7 @@ PT-Smartsoft
 
 ## Licencia
 
-Este proyecto está licenciado bajo la licencia de la empresa Smart Soft y solo se usará para fines netamente de la misma.
+- Este proyecto está licenciado bajo la licencia de la empresa Smart Soft y solo se usará para fines netamente de la misma.
 
 
 
